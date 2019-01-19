@@ -1,9 +1,18 @@
 /*jslint node: true */
 "use strict";
+var fs = require('fs');
+var desktopApp = require('wntcore/desktop_app.js');
+var appDataDir = desktopApp.getAppDataDir();
+var path = require('path');
+
+if (require.main === module && !fs.existsSync(appDataDir) && fs.existsSync(path.dirname(appDataDir)+'/wnt-hub')){
+	console.log('=== will rename old hub data dir');
+	fs.renameSync(path.dirname(appDataDir)+'/wnt-hub', appDataDir);
+}
 require('wnt-relay');
 var conf = require('./conf');
-var network = require('wnt/network');
-var eventBus = require('wnt/event_bus.js');
+var network = require('wntcore/network');
+var eventBus = require('wntcore/event_bus.js');
 var push = require('./push');
 const price_feed = require('./exchange_price_feed');
 

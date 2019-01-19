@@ -1,7 +1,7 @@
 {
   "name": "wnt-hub",
-  "description": "wnt Hub",
-  "author": "wnt",
+  "description": "Wnt Hub",
+  "author": "Wnt",
   "version": "0.1.5",
   "main": "start.js",
   "keywords": [
@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "apn": "^2.2.0",
-    "byteball-relay": "git+https://github.com/worldnuqumoritytransporters/wnt-relay.git",
+    "wnt-relay": "git+https://github.com/worldnuqumoritytransporters/wnt-relay.git",
     "request": "^2.81.0"
   }
 }

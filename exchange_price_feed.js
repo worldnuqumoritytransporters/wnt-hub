@@ -34,41 +34,41 @@ function updateBittrexRates(state, onDone) {
 	});
 }
 
-function updateFreebeRates(state, onDone) {
-	const apiUri = 'http://freebe.byte-ball.com/last';
-	request(apiUri, function (error, response, body) {
-		if (!error && response.statusCode == 200) {
-			console.log("freebe: ", body);
-			let price;
-			try{
-				price = parseFloat(JSON.parse(body).price_bytes);
-				console.log("GBB/GB = "+price);
-			}
-			catch(e){
-				console.log('bad response from freebe:', e);
-				return onDone();
-			}
-			if (rates['GBYTE_USD'] && price) {
-				rates['GBB_USD'] = rates['GBYTE_USD'] * price;
-				state.updated = true;
-			}
-		}
-		else {
-			console.log("Can't get currency rates from freebe");
-		}
-		onDone();
-	});
-}
+// function updateFreebeRates(state, onDone) {
+// 	const apiUri = 'http://freebe.byte-ball.com/last';
+// 	request(apiUri, function (error, response, body) {
+// 		if (!error && response.statusCode == 200) {
+// 			console.log("freebe: ", body);
+// 			let price;
+// 			try{
+// 				price = parseFloat(JSON.parse(body).price_bytes);
+// 				console.log("GBB/GB = "+price);
+// 			}
+// 			catch(e){
+// 				console.log('bad response from freebe:', e);
+// 				return onDone();
+// 			}
+// 			if (rates['GBYTE_USD'] && price) {
+// 				rates['GBB_USD'] = rates['GBYTE_USD'] * price;
+// 				state.updated = true;
+// 			}
+// 		}
+// 		else {
+// 			console.log("Can't get currency rates from freebe");
+// 		}
+// 		onDone();
+// 	});
+// }
 
 function updateRates(){
 	let state = {updated: false};
 	async.series([
 		function(cb){
 			updateBittrexRates(state, cb);
-		},
-		function(cb){
-			updateFreebeRates(state, cb);
 		}
+		// function(cb){
+		// 	updateFreebeRates(state, cb);
+		// }
 	], function(){
 		console.log(rates);
 		if (state.updated)
