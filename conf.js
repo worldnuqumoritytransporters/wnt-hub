@@ -2,7 +2,7 @@
 "use strict";
 
 exports.clientName = 'wnt';
-exports.minClientVersion = '2.6.0';
+exports.minClientVersion = '1.0.0';
 
 // https://console.developers.google.com
 exports.pushApiProjectNumber = 0;
